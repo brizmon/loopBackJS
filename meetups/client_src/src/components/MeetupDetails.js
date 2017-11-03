@@ -15,6 +15,7 @@ class MeetupDetails extends Component{
     }
 
     getMeetup(){
+         // Getting the ID from the URL (match.params) 
         let meetupId = this.props.match.params.id;
         axios.get(`http://localhost:3000/api/meetups/${meetupId}`)
         .then(response => {
@@ -23,6 +24,14 @@ class MeetupDetails extends Component{
             })
         })
         .catch(err => console.log(err));
+    }
+
+    onDelete(){
+        let meetupId = this.state.details.id;
+        axios.delete(`http://localhost:3000/api/meetups/${meetupId}`)
+            .then(response => {
+                this.props.history.push('/');
+            }).catch(err => console.log(err))
     }
 
     render(){
@@ -37,7 +46,7 @@ class MeetupDetails extends Component{
                 </ul>
                 <Link className="btn" to={`/meetups/edit/${this.state.details.id}`}>Edit</Link>
 
-                <button className="btn red right">Delete</button>
+                <button onClick={this.onDelete.bind(this)} className="btn red right">Delete</button>
             </div>
         )
     }
