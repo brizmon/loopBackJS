@@ -34,6 +34,7 @@ class EditMeetup extends Component{
         .catch(err => console.log(err));
     }
 
+    // UPDATE (PUT)
     editMeetup(newMeetup){
         axios.request({
             method: 'PUT',
@@ -47,7 +48,7 @@ class EditMeetup extends Component{
         }).catch(err => console.log(err));
     }
     
-    onSubmit(e){
+    onSubmit = (e) => {
         const newMeetup = {
             name: this.refs.name.value,
             city: this.refs.city.value,
@@ -60,6 +61,7 @@ class EditMeetup extends Component{
     handleInputChange = (e) => {
         const target = e.target;
         const value = target.value;
+        // name refers to the name attribute in input 
         const name = target.name;
 
         this.setState({
@@ -73,7 +75,7 @@ class EditMeetup extends Component{
                 <br />
                 <Link className="btn grey" to="/">Back</Link>
                 <h1>Edit Meetup</h1>
-                <form onSubmit={this.onSubmit.bind(this)}>
+                <form onSubmit={this.onSubmit}>
                     <div className="input-field">
                         <input type="text" name="name" ref="name" value={this.state.name} onChange={this.handleInputChange}/>
                         {/* Add class="active" to label bc label name overlapping input field value */}

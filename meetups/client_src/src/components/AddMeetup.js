@@ -16,7 +16,7 @@ class AddMeetup extends Component{
         }).catch(err => console.log(err));
     }
 
-    onSubmit(e){
+    onSubmit = (e) =>{
         const newMeetup = {
             name: this.refs.name.value,
             city: this.refs.city.value,
@@ -32,7 +32,7 @@ class AddMeetup extends Component{
                 <br />
                 <Link className="btn grey" to="/">Back</Link>
                 <h1>Add Meetup</h1>
-                <form onSubmit={this.onSubmit.bind(this)}>
+                <form onSubmit={this.onSubmit}>
                     <div className="input-field">
                         <input type="text" name="name" ref="name" />
                         <label htmlFor="name">Name</label>
